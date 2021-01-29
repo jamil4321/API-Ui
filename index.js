@@ -8,7 +8,7 @@ const PORT = 2000;
 app.use(bodyParse.json())
 app.use(cors())
 
-const mongoClient = mongoose.connect('mongodb://localhost:27017/todoApp', { useNewUrlParser: true, useUnifiedTopology: true })
+const mongoClient = mongoose.connect('mongodb+srv://admin:admin@myfisrtlerningapp.zbcua.mongodb.net/todo?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 mongoClient.then(res => {
     console.log('mongoConnected')
 }).catch(err => console.log(err))
