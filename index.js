@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParse = require('body-parser')
 const mongoose = require('mongoose')
 const cors = require('cors')
+var pathComp = require("express-static");
 
 const app = express()
 const PORT = 2000;
@@ -18,6 +19,8 @@ const Todo_schema = new mongoose.Schema({
     isEdit: Boolean
 })
 const TODO = mongoose.model('todo', Todo_schema, 'todo');
+
+
 
 app.get('/getItems', async (req, res) => {
     await TODO.find({}).then((data) => res.json(data)).catch((err) => res.json(err))
@@ -47,7 +50,9 @@ app.post('/remove', async (req, res) => {
     console.log(removeItem)
     res.json(removeItem.ok)
 })
+app.use(pathComp(__dirname + '/client/build'))
+app.get('/', function (req, res) {
+    res.render('index.html');
+});
 
-
-
-app.listen(PORT, () => console.log(`Server Start on Port ${PORT}`))
+app.listen(process.env.PORT || PORT, () => console.log(`Server Start on Port ${PORT}`))

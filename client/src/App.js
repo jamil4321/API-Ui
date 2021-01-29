@@ -4,7 +4,7 @@ class App extends Component {
   state = {
     inputItem: '',
     items: [],
-    url: 'http://localhost:2000'
+    url: 'https://apiandui.herokuapp.com/'
   }
   componentDidMount() {
     let func = async () => {
